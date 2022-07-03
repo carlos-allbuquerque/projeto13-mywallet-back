@@ -6,5 +6,6 @@ import passwordMiddleware from "../middlewares/passwordMiddleware.js";
 const router = Router();
 
 router.post("/subscription",passwordMiddleware, userMiddleware, createUser);
+router.get("/login");
 
 export default router;
