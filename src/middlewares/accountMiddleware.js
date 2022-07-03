@@ -2,7 +2,7 @@ import authSchema from "../schemas/authSchema.js";
 import { db } from "../db/mongo.js";
 
 
-export default async function userMiddleware(req, res, next) {
+export default async function crateAccountMiddleware(req, res, next) {
     const user = req.body;
     const validation = authSchema.validate(user, { abortEarly: false });
 
