@@ -7,4 +7,4 @@ const transactionSchema = joi.object({
     date: joi.string().required()
 })
 
-export default transactionSchema;
+export default transactionSchema; 

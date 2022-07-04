@@ -27,10 +27,22 @@ export async function loginAccount(req, res) {
 
     const token = uuid();
 
-    await db.collection("sessions").insertOne({
-        token,
-        accountId: account._id
-    });
+    const hasSession = await db.collection("sessions").findOne({accountId: account._id });
+    if (hasSession) {
+        await db.collection("sessios").updateOne(
+            {accountId: account._id},
+            {$set: {
+                token: token
+            }}
+        )
+    } else {
+        await db.collection("sessions").insertOne({
+            token,
+            accountId: account._id
+        });
+    }
+
+
 
     const response = {
         name: account.name,

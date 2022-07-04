@@ -4,14 +4,15 @@ export default async function transaction(req, res) {
     const transaction = req.body;
     const account = res.locals.account;
     let newBalance;
-
+        console.log(typeof account.balance);
+        console.log(typeof transaction.value);
     try {
         if (transaction.type === "withdraw") {
-            newBalance = account.balance - transaction.value;
+            newBalance = Number(account.balance) - Number(transaction.value);
         } 
-
+        
         else if (transaction.type === "deposit"){
-            newBalance = account.balance + transaction.value;
+            newBalance = Number(account.balance) + Number(transaction.value);
         }
         console.log("chegou aqui")
 
@@ -25,6 +26,7 @@ export default async function transaction(req, res) {
         return res.sendStatus(201);
         
     } catch (error) {
+        console.log(error);
         return res.status(500).send(error);
     }
 }

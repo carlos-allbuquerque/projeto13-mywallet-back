@@ -1,10 +1,10 @@
 import { Router } from "express";
-import getHistoric from "../controllers/historicController.js";
+import getAccountInfo from "../controllers/getAccountInfoController.js";
 import { tokenValidationMiddleware } from "../middlewares/tokenValidationMiddleware.js";
 
 const router = Router();
 
 router.use(tokenValidationMiddleware);
-router.get("/historic", getHistoric);
+router.get("/history", getAccountInfo);
 
 export default router;
