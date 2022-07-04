@@ -8,4 +8,9 @@ const createAccountSchema = joi.object({
 })
 
 
-export default createAccountSchema;
+const loginAccountSchema = joi.object({
+    email: joi.string().email().empty().required(),
+    password: joi.string().empty().required()
+})
+
+export { createAccountSchema, loginAccountSchema };

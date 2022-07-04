@@ -1,10 +1,10 @@
-import authSchema from "../schemas/authSchema.js";
 import { db } from "../db/mongo.js";
+import { createAccountSchema } from "../schemas/authSchema.js";
 
 
 export default async function crateAccountMiddleware(req, res, next) {
     const user = req.body;
-    const validation = authSchema.validate(user, { abortEarly: false });
+    const validation = createAccountSchema.validate(user, { abortEarly: false });
 
     if (validation.error ) {
         const messages = validation.error.details.map(item => item.message);
@@ -15,7 +15,7 @@ export default async function crateAccountMiddleware(req, res, next) {
     const emailAlreadyExists = await db.collection("accounts").findOne({ email: user.email});
 
     if (emailAlreadyExists) {
-        res.status(409).send("email já registrado no sistema");
+        res.status(409).send("senha ou email incorretos");
         return;
     }
     next();
