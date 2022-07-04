@@ -32,6 +32,14 @@ export async function loginAccount(req, res) {
         accountId: account._id
     });
 
-    return res.status(201).send({ token });
+    const response = {
+        name: account.name,
+        email: account.email,
+        balance: account.balance,
+        id: account._id,
+        token: token
+    }
+
+    return res.status(201).send(response);
     
 }
