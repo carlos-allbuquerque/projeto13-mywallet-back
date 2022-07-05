@@ -8,7 +8,7 @@ import transactionsRouter from "./routes/transactionsRouter.js"
 dotenv.config();
 
 const server = express();
-server.use(express.json(), cors());
+server.use([express.json(), cors()]);
 
 server.use(authRouter);
 server.use(accountInfoRouter);
